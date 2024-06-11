@@ -23,18 +23,5 @@ To use the CLI tool, follow these steps:
 Before using the CLI tool, make sure to configure the necessary settings. Open the `config.js` file and update the following:
 
 ```javascript
-module.exports = {
-    cohereApiKey: 'YOUR_COHERE_API_KEY',
-    langchainFramework: 'YOUR_LANGCHAIN_FRAMEWORK',
-};
-```
+export const cohereApiKey = process.env.COHERE_API_KEY || 'YOUR_COHERE_API_KEY';
 
-Replace `YOUR_COHERE_API_KEY` with your Cohere API key and `YOUR_LANGCHAIN_FRAMEWORK` with the desired Langchain framework.
-
-## Contributing
-
-Contributions are welcome! If you have any suggestions or improvements, feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
