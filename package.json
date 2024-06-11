@@ -1,0 +1,11 @@
+{
+  "name": "ccmdr",
+  "module": "ccmdr",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
