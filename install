@@ -1,7 +1,25 @@
 #!/usr/bin/env sh
 
+# Ensure ccmdr script exists
+if [ ! -f "ccmdr" ]; then
+    echo "ccmdr script not found. Please ensure it exists in the current directory."
+    exit 1
+fi
+
 # Set the executable permission for the ccmdr script
 chmod +x ccmdr
+echo "The script is now executable ✅"
 
 # Create a symbolic link to the ccmdr script in the /usr/local/bin directory
-sudo ln -s "$(pwd)/ccmdr" /usr/local/bin/
+if sudo ln -sf "$(pwd)/ccmdr" /usr/local/bin/; then
+    echo "Moved the exec file to the system's path ✅"
+else
+    echo "Failed to move the exec file to the system's path. Please check your permissions."
+    exit 1
+fi
+
+# Check if an argument was passed and set it as an environment variable
+if [ $# -eq 1 ]; then
+    echo "The argument you passed will be set as an env var with the name COHERE_API_KEY"
+    export API_KEY="$1"
+fi
