@@ -21,5 +21,5 @@ fi
 # Check if an argument was passed and set it as an environment variable
 if [ $# -eq 1 ]; then
     echo "The argument you passed will be set as an env var with the name COHERE_API_KEY"
-    export API_KEY="$1"
+    export COHERE_API_KEY="$1"
 fi
