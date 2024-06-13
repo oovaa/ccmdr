@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     // Enable latest features
+    "checkJs": true,
     "lib": ["ESNext", "DOM"],
     "target": "ESNext",
     "module": "ESNext",
