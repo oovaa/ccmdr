@@ -7,6 +7,12 @@ import { answer_chain } from './commandr.js'
 
 const RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
 
+function end() {
+  rl.close()
+  console.log('\n', RESPONSE_COLOR, 'Goodbye!')
+  process.exit(0)
+}
+
 /**
  * Runs the chat CLI application to test the bot response.
  *
@@ -21,13 +27,11 @@ async function run() {
   async function ask() {
     rl.question('You: ', async (msg) => {
       if (msg.toLocaleLowerCase() === 'exit') {
-        rl.close()
-        console.log(RESPONSE_COLOR, 'Goodbye!')
+        end()
       } else {
         try {
           const response = await answer_chain.invoke({
             question: msg,
-            // @ts-ignore
             history: formatConv(history)
           })
           history.push(msg)
@@ -44,6 +48,10 @@ async function run() {
   // Start the asking loop
   ask()
 }
+
+// Register signal handlers
+rl.on('SIGINT', end)
+rl.on('SIGTERM', end)
 
 // Run the application
 run()
