@@ -1,25 +1,39 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+# Define color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 
 # Ensure ccmdr script exists
 if [ ! -f "ccmdr" ]; then
-    echo "ccmdr script not found. Please ensure it exists in the current directory."
+    echo -e "${RED}ccmdr script not found. Please ensure it exists in the current directory.${NC}"
     exit 1
+fi
+
+if [ "$(command -v bun)" ]; then
+    bun install
+    echo -e "${GREEN}installing needed dependencies via bun${NC}"
+elif [ "$(command -v npm)" ]; then
+    npm install
+    echo -e "${GREEN}installing needed dependencies via npm${NC}"
 fi
 
 # Set the executable permission for the ccmdr script
 chmod +x ccmdr
-echo "The script is now executable ✅"
+echo -e "${GREEN}The script is now executable ✅${NC}"
 
 # Create a symbolic link to the ccmdr script in the /usr/local/bin directory
 if sudo ln -sf "$(pwd)/ccmdr" /usr/local/bin/; then
-    echo "Moved the exec file to the system's path ✅"
+    echo -e "${GREEN}Moved the exec file to the system's path ✅${NC}"
 else
-    echo "Failed to move the exec file to the system's path. Please check your permissions."
+    echo -e "${RED}Failed to move the exec file to the system's path. Please check your permissions.${NC}"
     exit 1
 fi
 
 # Check if an argument was passed and set it as an environment variable
 if [ $# -eq 1 ]; then
-    echo "The argument you passed will be set as an env var with the name COHERE_API_KEY"
+    echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY${NC}"
     export COHERE_API_KEY="$1"
 fi
