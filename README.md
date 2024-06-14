@@ -52,7 +52,3 @@ To use the CLI tool in non-interactive mode, follow these steps:
 ## Configuration
 
 Before using the CLI tool, make sure to configure the necessary settings by uploading the `COHERE_API_KEY` to your environment. You can do this manually or pass it to the install script as mentioned in the Installation section.
-
----
-
-This format should be easy to copy and paste as a single block.
