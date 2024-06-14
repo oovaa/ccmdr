@@ -4,16 +4,23 @@
 import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
+import { handle_non_interactive } from './nonInteractive'
 
 const Green_RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
-const Blue_RESPONSE_COLOR = '\x1b[94m%s\x1b[0m'; // Light Blue
-
-
+const Blue_RESPONSE_COLOR = '\x1b[94m%s\x1b[0m' // Light Blue
 
 function end() {
   rl.close()
   console.log('\n', Blue_RESPONSE_COLOR, 'Goodbye!')
   process.exit(0)
+}
+
+if (process.argv.length > 2) {
+  let question = process.argv.slice(2).join(' ')
+
+  let ans = await handle_non_interactive(question)
+  console.log(Blue_RESPONSE_COLOR, ans)
+  end()
 }
 
 /**
