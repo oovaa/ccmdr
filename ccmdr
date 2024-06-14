@@ -5,11 +5,14 @@ import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 
-const RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
+const Green_RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
+const Blue_RESPONSE_COLOR = '\x1b[94m%s\x1b[0m'; // Light Blue
+
+
 
 function end() {
   rl.close()
-  console.log('\n', RESPONSE_COLOR, 'Goodbye!')
+  console.log('\n', Blue_RESPONSE_COLOR, 'Goodbye!')
   process.exit(0)
 }
 
@@ -36,7 +39,7 @@ async function run() {
           })
           history.push(msg)
           history.push(response)
-          console.log(RESPONSE_COLOR, response)
+          console.log(Blue_RESPONSE_COLOR, response)
         } catch (error) {
           console.error('Error:', error.message)
         }
