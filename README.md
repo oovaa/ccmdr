@@ -16,7 +16,7 @@ To install the CLI tool, follow these steps:
     ```
 3. Run the install script (optionally passing your `COHERE_API_KEY`):
     ```sh
-    . ./install <optional COHERE_API_KEY>
+    . ./install <COHERE_API_KEY>
     ```
 
 ## Updating
