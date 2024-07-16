@@ -1,5 +1,4 @@
-#!/usr/bin/env sh
-':' //; exec "$(command -v bun || command -v node)" "$0" "$@"
+#!/usr/bin/env bun
 
 import { formatConv } from './format.js'
 import { rl } from './io.js'
