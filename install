@@ -34,6 +34,15 @@ fi
 
 # Check if an argument was passed and set it as an environment variable
 if [ $# -eq 1 ]; then
-    echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY${NC}"
+    echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY in the file /etc/environment${NC}"
     export COHERE_API_KEY="$1"
+
+    # Check if COHERE_API_KEY already exists in /etc/environment
+    if grep -q "COHERE_API_KEY" /etc/environment; then
+        # Update the existing value
+        sudo sed -i "s/COHERE_API_KEY=.*/COHERE_API_KEY=\"$1\"/" /etc/environment
+    else
+        # Add the new value
+        echo "COHERE_API_KEY=\"$1\"" | sudo tee -a /etc/environment
+    fi
 fi

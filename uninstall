@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Define color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Remove the symbolic link to the ccmdr script from the /usr/local/bin directory
+if [ -L "/usr/local/bin/ccmdr" ]; then
+    sudo -E rm "/usr/local/bin/ccmdr"
+    echo -e "${GREEN}ccmdr has been successfully removed from the system's path ✅${NC}"
+else
+    echo -e "${RED}ccmdr is not installed in the system's path.${NC}"
+fi
+
+
+if grep -q "COHERE_API_KEY" /etc/environment; then
+    sudo sed -i '/COHERE_API_KEY/d' /etc/environment
+    echo -e "${GREEN}COHERE_API_KEY has been successfully removed from /etc/environment ✅${NC}"
+else
+    echo -e "${RED}COHERE_API_KEY is not set in /etc/environment.${NC}"
+fi
+
+# Optional: Remove the node_modules folder
+if [ -d "node_modules" ]; then
+    rm -rf "node_modules"
+    echo -e "${GREEN}node_modules folder has been successfully removed ✅${NC}"
+else
+    echo -e "${RED}node_modules folder does not exist.${NC}"
+fi
+
+# Optional: Remove COHERE_API_KEY environment variable setting
+# This might have been added to a profile file like ~/.bashrc or ~/.zshrc
+# You need to manually remove it from there if needed

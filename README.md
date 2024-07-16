@@ -18,8 +18,10 @@ To install the CLI tool, follow these steps:
     ```sh
     . ./install <COHERE_API_KEY>
     ```
+> **Note:** The `COHERE_API_KEY` will be stored in `/etc/environment`.
 
 ## Updating
+
 
 To update the tool, navigate to its location and run:
 ```sh
@@ -52,3 +54,7 @@ To use the CLI tool in non-interactive mode, follow these steps:
 ## Configuration
 
 Before using the CLI tool, make sure to configure the necessary settings by uploading the `COHERE_API_KEY` to your environment. You can do this manually or pass it to the install script as mentioned in the Installation section.
+
+
+## uninstall
+to uninstall just run `. ./uninstall` and it will take care of everything it will unset the env var and remove it from `/etc/environment` remove the `node_modules` folder  and remove `ccmdr` command from your path
