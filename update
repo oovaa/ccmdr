@@ -1,5 +1,9 @@
 #! /usr/bin/env bash
 
+# This script updates the local repository and runs the 'bun update' command.
+
+# Pull the latest changes from the 'main' branch of the remote repository.
 git pull origin main
 
+# Run the 'bun update' command to update the dependencies.
 bun update
