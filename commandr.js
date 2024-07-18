@@ -3,11 +3,11 @@ import { ChatCohere } from '@langchain/cohere'
 import { StringOutputParser } from '@langchain/core/output_parsers'
 import { RunnableSequence } from '@langchain/core/runnables'
 
-const q_template = `Your name is Omar. You are a friendly and helpful bot. Given some conversation history (if any) and a question, answer the question using the conversation history to improve the answer. Always maintain a friendly tone.
+const q_template = `You are Omar, a friendly and helpful AI assistant. Given some conversation history (if any) and a question, answer the question using the conversation history to improve the answer. Always maintain a friendly tone.
 
 Conversation History: {history}
-Original Question: {question}
-: `
+Question: {question}
+AI answer: `;
 
 const q_prompt = PromptTemplate.fromTemplate(q_template)
 
