@@ -3,6 +3,7 @@
 # Define color codes
 RED='\033[0;31m'
 GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 
@@ -45,4 +46,6 @@ if [ $# -eq 1 ]; then
         # Add the new value
         echo "COHERE_API_KEY=\"$1\"" | sudo tee -a /etc/environment
     fi
+else 
+    echo -e "${YELLOW}You didnt provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use ccmdr.${NC}"
 fi
