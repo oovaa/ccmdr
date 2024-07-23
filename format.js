@@ -4,15 +4,11 @@
  * @returns {string} - The formatted conversation history.
  */
 function formatConv(messages) {
-  return messages
-    .map((message, i) => {
-      if (i % 2 === 0) {
-        return `Human: ${message}`
-      } else {
-        return `AI: ${message}`
-      }
-    })
+  const formattedMessages = messages
+    .map((message, i) => `${i % 2 === 0 ? 'Human' : 'AI'}: ${message}`)
     .join('\n')
+
+  return formattedMessages
 }
 
 export { formatConv }
