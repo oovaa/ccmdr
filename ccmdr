@@ -8,7 +8,6 @@ import { answer_chain } from './commandr.js'
 import { handle_non_interactive } from './nonInteractive.js'
 import 'colors'
 
-
 /**
  * handle quiting with a success status code
  */
@@ -20,8 +19,10 @@ function end() {
 
 // check non interactive quetion and handle it
 if (process.argv.length > 2) {
+  console.time(' ')
   let ans = await handle_non_interactive(process.argv)
   console.log(ans.blue)
+  console.timeEnd(' ')
   end()
 }
 
