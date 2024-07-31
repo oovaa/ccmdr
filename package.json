@@ -3,7 +3,8 @@
   "module": "ccmdr",
   "dependencies": {
     "@langchain/cohere": "^0.0.11",
-    "cohere-ai": "^7.11.0"
+    "cohere-ai": "^7.11.0",
+    "colors": "^1.4.0"
   },
   "devDependencies": {
     "@types/bun": "latest",

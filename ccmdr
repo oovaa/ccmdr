@@ -1,25 +1,27 @@
 #!/usr/bin/env bun
 
+// @ts-check
+
 import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 import { handle_non_interactive } from './nonInteractive.js'
+import 'colors'
 
-const Green_RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
-const Blue_RESPONSE_COLOR = '\x1b[94m%s\x1b[0m' // Light Blue
-const DARKER_Blue_RESPONSE_COLOR = '\x1b[34m%s\x1b[0m' // Darker Blue
 
+/**
+ * handle quiting with a success status code
+ */
 function end() {
   rl.close()
-  console.log('\n', DARKER_Blue_RESPONSE_COLOR, 'Goodbye!')
+  console.log('\n', 'Goodbye!'.gray)
   process.exit(0)
 }
 
+// check non interactive quetion and handle it
 if (process.argv.length > 2) {
-  let question = process.argv.slice(2).join(' ')
-
-  let ans = await handle_non_interactive(question)
-  console.log(DARKER_Blue_RESPONSE_COLOR, ans)
+  let ans = await handle_non_interactive(process.argv)
+  console.log(ans.blue)
   end()
 }
 
@@ -42,11 +44,11 @@ async function run() {
         try {
           const response = await answer_chain.invoke({
             question: msg,
-            history: formatConv(history)
+            history: formatConv(history),
           })
           history.push(msg)
           history.push(response)
-          console.log(DARKER_Blue_RESPONSE_COLOR, response)
+          console.log(response.blue)
         } catch (error) {
           console.error('Error:', error.message)
         }
