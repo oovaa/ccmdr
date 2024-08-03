@@ -1,4 +1,5 @@
 ## Bugs
+- [ ] crash when doing `echo hi | ccmdr`
 - [x] Fix the issue where an empty question is accepted in interactive mode.
 
 ## Features
