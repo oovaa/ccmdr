@@ -39,7 +39,12 @@ async function run() {
    * Asks a question to the user and processes the response.
    */
   async function ask() {
-    rl.question('You: ', async (msg) => {
+    rl.question('You: ', async (/** @type {string} */ msg) => {
+      msg = msg.trim()
+      if (msg === '') {
+        ask()
+        return
+      }
       if (msg.toLocaleLowerCase() === 'exit') {
         end()
       } else {
