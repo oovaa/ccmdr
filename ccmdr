@@ -1,25 +1,28 @@
 #!/usr/bin/env bun
 
+// @ts-check
+
 import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 import { handle_non_interactive } from './nonInteractive.js'
+import 'colors'
 
-const Green_RESPONSE_COLOR = '\x1b[32m%s\x1b[0m' // Green
-const Blue_RESPONSE_COLOR = '\x1b[94m%s\x1b[0m' // Light Blue
-const DARKER_Blue_RESPONSE_COLOR = '\x1b[34m%s\x1b[0m' // Darker Blue
-
+/**
+ * handle quiting with a success status code
+ */
 function end() {
   rl.close()
-  console.log('\n', DARKER_Blue_RESPONSE_COLOR, 'Goodbye!')
+  console.timeEnd(' ')
+  console.log('Goodbye!'.gray)
   process.exit(0)
 }
 
+// check non interactive quetion and handle it
 if (process.argv.length > 2) {
-  let question = process.argv.slice(2).join(' ')
-
-  let ans = await handle_non_interactive(question)
-  console.log(DARKER_Blue_RESPONSE_COLOR, ans)
+  console.time(' ')
+  let ans = await handle_non_interactive(process.argv)
+  console.log(ans.blue)
   end()
 }
 
@@ -31,22 +34,28 @@ if (process.argv.length > 2) {
 async function run() {
   const history = []
 
+  console.time(' ')
   /**
    * Asks a question to the user and processes the response.
    */
   async function ask() {
-    rl.question('You: ', async (msg) => {
+    rl.question('You: ', async (/** @type {string} */ msg) => {
+      msg = msg.trim()
+      if (msg === '') {
+        ask()
+        return
+      }
       if (msg.toLocaleLowerCase() === 'exit') {
         end()
       } else {
         try {
           const response = await answer_chain.invoke({
             question: msg,
-            history: formatConv(history)
+            history: formatConv(history),
           })
           history.push(msg)
           history.push(response)
-          console.log(DARKER_Blue_RESPONSE_COLOR, response)
+          console.log(response.blue)
         } catch (error) {
           console.error('Error:', error.message)
         }
@@ -60,10 +69,12 @@ async function run() {
 }
 
 // Register signal handlers
-rl.on('SIGINT', end)
-rl.on('SIGTERM', end)
-rl.on('SIGQUIT', end)
-rl.on('SIGTSTP', end)
+;['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGTSTP'].forEach((signal) => {
+  rl.on(signal, () => {
+    console.log()
+    end()
+  })
+})
 
 // Run the application
 run()
