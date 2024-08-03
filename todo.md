@@ -12,3 +12,4 @@
 - [ ] Add configuration options command to allow the user to:
   - Choose the response color.
   - Decide if the response should be bold or not.
+
