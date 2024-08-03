@@ -13,7 +13,8 @@ import 'colors'
  */
 function end() {
   rl.close()
-  console.log('\n', 'Goodbye!'.gray)
+  console.timeEnd(' ')
+  console.log('Goodbye!'.gray)
   process.exit(0)
 }
 
@@ -22,7 +23,6 @@ if (process.argv.length > 2) {
   console.time(' ')
   let ans = await handle_non_interactive(process.argv)
   console.log(ans.blue)
-  console.timeEnd(' ')
   end()
 }
 
@@ -34,6 +34,7 @@ if (process.argv.length > 2) {
 async function run() {
   const history = []
 
+  console.time(' ')
   /**
    * Asks a question to the user and processes the response.
    */
@@ -63,10 +64,12 @@ async function run() {
 }
 
 // Register signal handlers
-rl.on('SIGINT', end)
-rl.on('SIGTERM', end)
-rl.on('SIGQUIT', end)
-rl.on('SIGTSTP', end)
+;['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGTSTP'].forEach((signal) => {
+  rl.on(signal, () => {
+    console.log()
+    end()
+  })
+})
 
 // Run the application
 run()
