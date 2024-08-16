@@ -14,3 +14,7 @@
   - Choose the response color.
   - Decide if the response should be bold or not.
 
+## improvements
+
+- [x] improved response for terminal and removing the markdown
+- [x] the AI now is more creative
