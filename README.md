@@ -15,9 +15,11 @@ To install the CLI tool, follow these steps:
     cd ccmdr
     ```
 3. Run the install script (optionally passing your `COHERE_API_KEY`):
-    ```
+
+    ```sh
     . ./install <COHERE_API_KEY>
     ```
+
 > **Note:** The `COHERE_API_KEY` will be stored in `/etc/environment`.
 
 ## Updating
