@@ -5,7 +5,7 @@
 import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
-import { handle_non_interactive } from './nonInteractive.js'
+import { handle_args } from './nonInteractive.js'
 import 'colors'
 
 /**
@@ -13,15 +13,14 @@ import 'colors'
  */
 function end() {
   rl.close()
-  console.timeEnd(' ')
-  console.log('Goodbye!'.gray)
+  console.timeEnd('Goodbye!'.gray)
   process.exit(0)
 }
 
 // check non interactive quetion and handle it
 if (process.argv.length > 2) {
-  console.time(' ')
-  let ans = await handle_non_interactive(process.argv)
+  console.time('Goodbye!'.gray)
+  let ans = await handle_args(process.argv)
   console.log(ans.blue)
   end()
 }
@@ -34,7 +33,7 @@ if (process.argv.length > 2) {
 async function run() {
   const history = []
 
-  console.time(' ')
+  console.time('Goodbye!'.gray)
   /**
    * Asks a question to the user and processes the response.
    */
