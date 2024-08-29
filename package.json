@@ -1,6 +1,7 @@
 {
   "name": "ccmdr",
   "module": "ccmdr",
+  "version": "1.4",
   "dependencies": {
     "@langchain/cohere": "^0.0.11",
     "cohere-ai": "^7.12.0",

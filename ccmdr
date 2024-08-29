@@ -51,7 +51,7 @@ async function run() {
         try {
           const response = await answer_chain.invoke({
             question: msg,
-            history: formatConv(history),
+            history: formatConv(history)
           })
           history.push(msg)
           history.push(response)

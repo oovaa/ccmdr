@@ -11,4 +11,10 @@ const rl = createInterface({
   terminal: true
 })
 
+// rl.input.on('keypress', (char, key) => {
+//   if (key && key.ctrl && key.name === 'enter') {
+//     rl.write('\n') // Move to a new line
+//   }
+// })
+
 export { rl }
