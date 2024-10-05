@@ -2,7 +2,6 @@
 
 // @ts-check
 
-import { formatConv } from './format.js'
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 import { handle_args } from './nonInteractive.js'
