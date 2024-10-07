@@ -5,6 +5,7 @@
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 import { handle_args } from './nonInteractive.js'
+import { colorizeOutput } from './colorize';
 import 'colors'
 
 /**
@@ -46,7 +47,7 @@ async function run() {
         try {
           // Append the new message to the history string
           historyStr += `Human: ${msg}\n`;
-          
+
           const response = await answer_chain.invoke({
             question: msg,
             history: historyStr // Pass the current history string
@@ -55,7 +56,7 @@ async function run() {
           // Append the AI's response to the history string
           historyStr += `AI: ${response}\n`;
 
-          console.log(response.blue);
+          colorizeOutput(response, 'green')
         } catch (error) {
           console.error('Error:', error.message);
         }
