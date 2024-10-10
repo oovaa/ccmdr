@@ -2,6 +2,20 @@
 
 This CLI tool allows you to create a command-line AI assistant using the Command R+ model from Cohere and the Langchain framework.
 
+## Table of Contents
+
+- [CLI Tool: Command R+ AI Assistant](#cli-tool-command-r-ai-assistant)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Updating](#updating)
+  - [Usage](#usage)
+    - [Interactive Mode](#interactive-mode)
+    - [Non-Interactive Mode](#non-interactive-mode)
+  - [Configuration](#configuration)
+  - [Uninstall](#uninstall)
+
+
+
 ## Installation
 
 To install the CLI tool, follow these steps:
@@ -14,8 +28,14 @@ To install the CLI tool, follow these steps:
     ```sh
     cd ccmdr
     ```
-3. Run the install script (optionally passing your `COHERE_API_KEY`):
+3. Verify that Bun is installed:
+    ```sh
+    bun --version
+    ```
 
+    If Bun is not installed, follow the instructions [here](https://bun.sh/docs/installation) to install it.
+
+4. Run the install script (optionally passing your `COHERE_API_KEY`
     ```sh
     . ./install <COHERE_API_KEY>
     ```
@@ -23,7 +43,6 @@ To install the CLI tool, follow these steps:
 > **Note:** The `COHERE_API_KEY` will be stored in `/etc/environment`.
 
 ## Updating
-
 
 To update the tool, navigate to its location and run:
 ```sh
@@ -57,6 +76,6 @@ To use the CLI tool in non-interactive mode, follow these steps:
 
 Before using the CLI tool, make sure to configure the necessary settings by uploading the `COHERE_API_KEY` to your environment. You can do this manually or pass it to the install script as mentioned in the Installation section.
 
+## Uninstall
 
-## uninstall
-to uninstall just run `. ./uninstall` and it will take care of everything it will unset the env var and remove it from `/etc/environment` remove the `node_modules` folder  and remove `ccmdr` command from your path
+To uninstall, just run `. ./uninstall` and it will take care of everything. It will unset the environment variable and remove it from `/etc/environment`, remove the `node_modules` folder, and remove the `ccmdr` command from your path.
