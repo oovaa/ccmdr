@@ -35,7 +35,7 @@ To install the CLI tool, follow these steps:
 
     If Bun is not installed, follow the instructions [here](https://bun.sh/docs/installation) to install it.
 
-4. Run the install script (optionally passing your `COHERE_API_KEY`
+4. Run the install script (optionally passing your `COHERE_API_KEY`)
     ```sh
     . ./install <COHERE_API_KEY>
     ```
@@ -45,7 +45,10 @@ To install the CLI tool, follow these steps:
 ## Updating
 
 To update the tool, navigate to its location and run:
+
 ```sh
+ cd ccmdr
+
 ./update
 ```
 
