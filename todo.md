@@ -11,8 +11,8 @@
   - `-s` to start a conversation with a question.
 
 - [ ] Add configuration options command to allow the user to:
-  - Choose the response color.
-  - Decide if the response should be bold or not.
+  - [x] Choose the response color.
+  - [x] Decide if the response should be bold or not.
 
 ## improvements
 

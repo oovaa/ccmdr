@@ -22,23 +22,39 @@
  * @returns {string} The colorized message.
  */
 import colors from 'colors';
-
+import fs from 'fs';
+import path from 'path';
 
 
 class Colorizer {
 
-    static color = "blue"
-    static bold = true
+    color = "blue"
+    bold = true
+
+    constructor() {
+        const configPath = path.join(__dirname, 'conf.json');
+        let config = {};
+
+        try {
+            const data = fs.readFileSync(configPath, 'utf8');
+            config = JSON.parse(data);
+            // @ts-ignore
+            this.color = config.color || this.color;
+            // @ts-ignore
+            this.bold = config.bold && this.bold;
+        } catch (error) {
+        }
+    }
     /**
      * Colorizes the output message with the specified color.
      * @param {string} msg - The message to colorize.
     */
-    static colorizeOutput(msg, color = this.color) {
+    colorizeOutput(msg, color = this.color, bold = this.bold) {
         try {
             // @ts-ignore
             let colorize = colors[color] ? colors[color] : colors.blue;
 
-            colorize = this.bold ? colorize.bold : colorize
+            colorize = bold ? colorize.bold : colorize
             console.log(colorize(msg));
             return msg;
         } catch (error) {
@@ -59,7 +75,8 @@ class Colorizer {
 // Colorizer.colorizeOutput('info', 'blue');
 // Colorizer.colorizeOutput('success', 'green');
 
-// Colorizer.colorizeOutput('hiii', 'cyan')
+// let colorize = new Colorizer()
+// colorize.colorizeOutput('hiii')
 
 export { Colorizer }
 

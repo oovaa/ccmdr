@@ -8,6 +8,8 @@ import { handle_args } from './nonInteractive.js'
 import { Colorizer } from './colorize';
 import 'colors'
 
+const colorize = new Colorizer()
+
 /**
  * handle quiting with a success status code
  */
@@ -21,7 +23,7 @@ function end() {
 if (process.argv.length > 2) {
   console.time('Goodbye!'.gray)
   let ans = await handle_args(process.argv)
-  console.log(ans.blue)
+  colorize.colorizeOutput(ans)
   end()
 }
 
@@ -56,7 +58,7 @@ async function run() {
           // Append the AI's response to the history string
           historyStr += `AI: ${response}\n`;
 
-          Colorizer.colorizeOutput(response, 'blue')
+          colorize.colorizeOutput(response)
         } catch (error) {
           console.error('Error:', error.message);
         }

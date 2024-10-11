@@ -1,4 +1,4 @@
 {
-    "ResponseColor": "blue",
-    "bold": 1
+    "color": "green",
+    "bold": true
 }
