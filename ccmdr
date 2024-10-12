@@ -5,7 +5,7 @@
 import { rl } from './io.js'
 import { answer_chain } from './commandr.js'
 import { handle_args } from './nonInteractive.js'
-import { Colorizer } from './colorize';
+import { Colorizer } from './conf.js';
 import 'colors'
 
 const colorize = new Colorizer()
