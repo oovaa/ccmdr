@@ -71,7 +71,7 @@ class StyleConfig {
     }
 
     /**
-     * @param {{ color: string; bold: boolean; }} config
+     * @param {{ color: string; bold: boolean; } | null } config
      */
     static async writeConfigToFile(config) {
         try {

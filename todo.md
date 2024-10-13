@@ -6,13 +6,11 @@
 
 - [ ] implement ctrl + enter to go to a new line
 
-- [ ] Add command-line arguments:
-  - `-v` to show the version.
-  - `-s` to start a conversation with a question.
 
 - [ ] Add configuration options command to allow the user to:
-  - [x] Choose the response color.
-  - [x] Decide if the response should be bold or not.
+  - [x] Choose the response boldness and color `-sc`.
+  - [x] update using `ccmdr -update`.
+  - [x] uninstall using `ccmdr -uninstall`.
 
 ## improvements
 
