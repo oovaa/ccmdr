@@ -1,10 +1,6 @@
-// @ts-nocheck
 import { createInterface } from 'readline'
+import colors from 'colors'
 
-/**
- * Readline interface for input/output operations.
- * @type {readline.Interface}
- */
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout,

@@ -1,25 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Define color codes
-RED='\033[0;31m'
+# Define color variables
 GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
-
-
-# Ensure ccmdr script exists
-if [ ! -f "ccmdr" ]; then
-    echo -e "${RED}ccmdr script not found. Please ensure it exists in the current directory.${NC}"
-    exit 1
-fi
-
-if [ "$(command -v bun)" ]; then
-    bun install
-    echo -e "${GREEN}installing needed dependencies via bun${NC}"
-elif [ "$(command -v npm)" ]; then
-    npm install
-    echo -e "${GREEN}installing needed dependencies via npm${NC}"
-fi
 
 # Set the executable permission for the ccmdr script
 chmod +x ccmdr
@@ -38,14 +23,20 @@ if [ $# -eq 1 ]; then
     echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY in the file /etc/environment${NC}"
     export COHERE_API_KEY="$1"
 
-    # Check if COHERE_API_KEY already exists in /etc/environment
-    if grep -q "COHERE_API_KEY" /etc/environment; then
-        # Update the existing value
-        sudo sed -i "s/COHERE_API_KEY=.*/COHERE_API_KEY=\"$1\"/" /etc/environment
+    # Check if /etc/environment exists and is writable
+    if [ -w /etc/environment ]; then
+        # Check if COHERE_API_KEY already exists in /etc/environment
+        if grep -q "COHERE_API_KEY" /etc/environment; then
+            # Update the existing value
+            sudo sed -i "s/COHERE_API_KEY=.*/COHERE_API_KEY=\"$1\"/" /etc/environment
+        else
+            # Add the new value
+            echo "COHERE_API_KEY=\"$1\"" | sudo tee -a /etc/environment
+        fi
     else
-        # Add the new value
-        echo "COHERE_API_KEY=\"$1\"" | sudo tee -a /etc/environment
+        echo -e "${RED}/etc/environment does not exist or is not writable. Please check your permissions.${NC}"
+        exit 1
     fi
 else 
-    echo -e "${YELLOW}You didnt provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use ccmdr.${NC}"
+    echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use ccmdr.${NC}"
 fi

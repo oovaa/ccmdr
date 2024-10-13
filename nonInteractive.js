@@ -1,14 +1,28 @@
 import { answer_chain } from './commandr'
+import { StyleConfig } from './conf';
+import { uninstall, update } from './scripts';
 
 /**
  * Handles non-interactive mode.
  * @param { string[] } args
  * @returns  string
  */
-export async function handle_non_interactive(args) {
+export async function handle_args(args) {
   const question = args.slice(2).join(' ')
-
-  let ans = await answer_chain.invoke({ question: question, history: '' })
-
-  return ans
+  switch (question) {
+    case '-sc':
+      const sc = new StyleConfig()
+      const new_conf_obj = await sc.getStyleConfig()
+      await StyleConfig.writeConfigToFile(new_conf_obj)
+      process.exit(0)
+    case '-update':
+      await update()
+      break;
+    case '-uninstall':
+     await uninstall()
+      break;
+    default:
+      let ans = await answer_chain.invoke({ question: question, history: '' })
+      return ans
+  }
 }
