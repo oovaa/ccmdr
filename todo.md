@@ -1,6 +1,7 @@
 ## Bugs
 - [ ] crash when doing `echo hi | ccmdr`
 - [x] Fix the issue where an empty question is accepted in interactive mode.
+- [x] ccmdr cant find `config.json` file.
 
 ## Features
 

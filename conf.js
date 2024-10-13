@@ -76,7 +76,8 @@ class StyleConfig {
     static async writeConfigToFile(config) {
         try {
             const jsonString = JSON.stringify(config, null, 2);
-            await fs.promises.writeFile('conf.json', jsonString, 'utf8');
+            const configPath = path.join(__dirname, 'conf.json');
+            await fs.promises.writeFile(configPath, jsonString, 'utf8');
             console.log('Configuration saved to conf.json');
         } catch (error) {
             console.error('Error writing to file:', error);
