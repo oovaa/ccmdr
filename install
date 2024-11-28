@@ -6,12 +6,12 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Set the executable permission for the ccmdr script
-chmod +x ccmdr
+# Set the executable permission for the bro script
+chmod +x bro
 echo -e "${GREEN}The script is now executable ✅${NC}"
 
-# Create a symbolic link to the ccmdr script in the /usr/local/bin directory
-if sudo ln -sf "$(pwd)/ccmdr" /usr/local/bin/; then
+# Create a symbolic link to the bro script in the /usr/local/bin directory
+if sudo ln -sf "$(pwd)/bro" /usr/local/bin/; then
     echo -e "${GREEN}Moved the exec file to the system's path ✅${NC}"
 else
     echo -e "${RED}Failed to move the exec file to the system's path. Please check your permissions.${NC}"
@@ -38,5 +38,5 @@ if [ $# -eq 1 ]; then
         exit 1
     fi
 else 
-    echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use ccmdr.${NC}"
+    echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use bro.${NC}"
 fi

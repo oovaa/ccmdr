@@ -1,7 +1,7 @@
 ## Bugs
-- [ ] crash when doing `echo hi | ccmdr`
+- [ ] crash when doing `echo hi | bro`
 - [x] Fix the issue where an empty question is accepted in interactive mode.
-- [x] ccmdr cant find `config.json` file.
+- [x] bro cant find `config.json` file.
 
 ## Features
 
@@ -10,8 +10,8 @@
 
 - [ ] Add configuration options command to allow the user to:
   - [x] Choose the response boldness and color `-sc`.
-  - [x] update using `ccmdr -update`.
-  - [x] uninstall using `ccmdr -uninstall`.
+  - [x] update using `bro -update`.
+  - [x] uninstall using `bro -uninstall`.
 
 ## improvements
 
