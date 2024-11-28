@@ -78,7 +78,6 @@ class StyleConfig {
             const jsonString = JSON.stringify(config, null, 2);
             const configPath = path.join(__dirname, 'conf.json');
             await fs.promises.writeFile(configPath, jsonString, 'utf8');
-            console.log('Configuration saved to conf.json');
         } catch (error) {
             console.error('Error writing to file:', error);
         }
@@ -110,7 +109,7 @@ class Colorizer {
 
     /**
      * Colorizes the output message with the specified color.
-     * @param {string} msg - The message to colorize.
+     * @param {string | undefined} msg - The message to colorize.
     */
     colorizeOutput(msg, color = this.color, bold = this.bold) {
         try {

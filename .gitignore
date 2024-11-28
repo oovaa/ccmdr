@@ -177,4 +177,5 @@ dist
 *.lockb
 
 exp/
+# Ignore configuration file
 conf.json

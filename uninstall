@@ -5,12 +5,12 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-# Remove the symbolic link to the ccmdr script from the /usr/local/bin directory
-if [ -L "/usr/local/bin/ccmdr" ]; then
-    sudo -E rm "/usr/local/bin/ccmdr"
-    echo -e "${GREEN}ccmdr has been successfully removed from the system's path ✅${NC}"
+# Remove the symbolic link to the bro script from the /usr/local/bin directory
+if [ -L "/usr/local/bin/bro" ]; then
+    sudo -E rm "/usr/local/bin/bro"
+    echo -e "${GREEN}bro has been successfully removed from the system's path ✅${NC}"
 else
-    echo -e "${RED}ccmdr is not installed in the system's path.${NC}"
+    echo -e "${RED}bro is not installed in the system's path.${NC}"
 fi
 
 

@@ -22,11 +22,11 @@ To install the CLI tool, follow these steps:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/oovaa/ccmdr.git
+    git clone https://github.com/oovaa/bro.git
     ```
 2. Navigate to the project directory:
     ```sh
-    cd ccmdr
+    cd bro
     ```
 3. Verify that Bun is installed:
     ```sh
@@ -47,7 +47,7 @@ To install the CLI tool, follow these steps:
 To update the tool, run:
 
 ```sh
-ccmdr update
+bro update
 ```
 
 ## Usage
@@ -59,7 +59,7 @@ To use the CLI tool in interactive mode, follow these steps:
 1. Open a terminal and navigate to the project directory.
 2. Run the CLI tool:
     ```sh
-    ccmdr
+    bro
     ```
 3. Follow the on-screen instructions to interact with the AI assistant.
 
@@ -70,16 +70,16 @@ To use the CLI tool in non-interactive mode, follow these steps:
 1. Open a terminal and navigate to the project directory.
 2. Run the CLI tool with your question:
     ```sh
-    ccmdr tell me about Palestine
+    bro tell me about Palestine
     ```
 
 
 ## Configuration
 
-run `ccmdr -sc` to get style config guide
+run `bro -sc` to get style config guide
 
 Before using the CLI tool, make sure to configure the necessary settings by uploading the `COHERE_API_KEY` to your environment. You can do this manually or pass it to the install script as mentioned in the Installation section.
 
 ## Uninstall
 
-To uninstall, just run `ccmdr uninstall` and it will take care of everything. It will unset the environment variable and remove it from `/etc/environment`, remove the `node_modules` folder, and remove the `ccmdr` command from your path.
+To uninstall, just run `bro uninstall` and it will take care of everything. It will unset the environment variable and remove it from `/etc/environment`, remove the `node_modules` folder, and remove the `bro` command from your path.
