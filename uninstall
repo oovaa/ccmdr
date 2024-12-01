@@ -7,19 +7,22 @@ NC='\033[0m' # No Color
 
 # Remove the symbolic link to the bro script from the /usr/local/bin directory
 if [ -L "/usr/local/bin/bro" ]; then
-    sudo -E rm "/usr/local/bin/bro"
-    echo -e "${GREEN}bro has been successfully removed from the system's path ✅${NC}"
+    if sudo -E rm "/usr/local/bin/bro"; then
+        echo -e "${GREEN}bro has been successfully removed from the system's path ✅${NC}"
+    else
+        echo -e "${RED}Failed to remove bro from the system's path.${NC}"
+    fi
 else
     echo -e "${RED}bro is not installed in the system's path.${NC}"
 fi
 
 
-if grep -q "COHERE_API_KEY" /etc/environment; then
-    sudo sed -i '/COHERE_API_KEY/d' /etc/environment
-    echo -e "${GREEN}COHERE_API_KEY has been successfully removed from /etc/environment ✅${NC}"
-else
-    echo -e "${RED}COHERE_API_KEY is not set in /etc/environment.${NC}"
-fi
+# if grep -q "COHERE_API_KEY" /etc/environment; then
+#     sudo sed -i '/COHERE_API_KEY/d' /etc/environment
+#     echo -e "${GREEN}COHERE_API_KEY has been successfully removed from /etc/environment ✅${NC}"
+# else
+#     echo -e "${RED}COHERE_API_KEY is not set in /etc/environment.${NC}"
+# fi
 
 # Optional: Remove the node_modules folder
 if [ -d "node_modules" ]; then

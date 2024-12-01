@@ -17,10 +17,10 @@ export async function handle_args(args) {
       process.exit(0)
     case '-update':
       await update()
-      break;
+      return 'Update completed successfully.'
     case '-uninstall':
-     await uninstall()
-      break;
+      await uninstall()
+      return 'Uninstall completed successfully.'
     default:
       let ans = await answer_chain.invoke({ question: question, history: '' })
       return ans
