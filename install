@@ -16,6 +16,10 @@ fi
 chmod +x bro
 echo -e "${GREEN}The script is now executable ✅${NC}"
 
+echo -e "${GREEN}Installing dependecies via bun${NC}"
+bun install
+echo -e "${GREEN}installed ✅${NC}"
+
 # Create a symbolic link to the bro script in the /usr/local/bin directory
 if sudo ln -sf "$(pwd)/bro" /usr/local/bin/; then
     echo -e "${GREEN}Moved the exec file to the system's path ✅${NC}"

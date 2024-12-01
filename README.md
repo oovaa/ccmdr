@@ -44,10 +44,10 @@ To install the CLI tool, follow these steps:
 
 ## Updating
 
-To update the tool, run:
+To update the tool, in bro directory run:
 
 ```sh
-bro update
+./update
 ```
 
 ## Usage
@@ -76,10 +76,9 @@ To use the CLI tool in non-interactive mode, follow these steps:
 
 ## Configuration
 
-run `bro -sc` to get style config guide
 
 Before using the CLI tool, make sure to configure the necessary settings by uploading the `COHERE_API_KEY` to your environment. You can do this manually or pass it to the install script as mentioned in the Installation section.
 
 ## Uninstall
 
-To uninstall, just run `bro uninstall` and it will take care of everything. It will unset the environment variable and remove it from `/etc/environment`, remove the `node_modules` folder, and remove the `bro` command from your path.
+To uninstall, just run `./uninstall` and it will take care of everything. It will unset the environment variable and remove it from `/etc/environment`, remove the `node_modules` folder, and remove the `bro` command from your path.
