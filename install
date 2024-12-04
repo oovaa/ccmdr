@@ -16,7 +16,7 @@ fi
 chmod +x bro
 echo -e "${GREEN}The script is now executable ✅${NC}"
 
-echo -e "${GREEN}Installing dependecies via bun${NC}"
+echo -e "${GREEN}Installing dependencies via bun${NC}"
 bun install
 echo -e "${GREEN}installed ✅${NC}"
 
@@ -27,25 +27,18 @@ else
     echo -e "${RED}Failed to move the exec file to the system's path. Please check your permissions.${NC}"
     # exit 1
 fi
-
-# Check if an argument was passed and set it as an environment variable
+# Check if an argument was passed and set it as an environment variable in the .bashrc file
 if [ $# -eq 1 ]; then
-    echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY in the file /etc/environment${NC}"
+    echo -e "${GREEN}The argument you passed will be set as an env var with the name COHERE_API_KEY in the file .bashrc${NC}"
 
-    # Check if /etc/environment exists and is writable
-    if [ -f /etc/environment ]; then
-        # Check if COHERE_API_KEY already exists in /etc/environment
-        if grep -q "COHERE_API_KEY" /etc/environment; then
-            # Update the existing value
-            sudo sed -i "s/COHERE_API_KEY=.*/COHERE_API_KEY=\"$1\"/" /etc/environment
-        else
-            # Add the new value
-            echo "COHERE_API_KEY=\"$1\"" | sudo tee -a /etc/environment
-        fi
+    # Update the .bashrc file
+    if grep -q "export COHERE_API_KEY" ~/.bashrc; then
+        # Update the existing value
+        sed -i "s/export COHERE_API_KEY=.*/export COHERE_API_KEY=\"$1\"/" ~/.bashrc
     else
-        echo -e "${RED}/etc/environment does not exist or is not writable. Please check your permissions.${NC}"
-        # exit 1
+        # Add the new value
+        echo "export COHERE_API_KEY=\"$1\"" >> ~/.bashrc
     fi
 else
-    echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually, otherwise you can't use bro.${NC}"
+    echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually in the .bashrc file, otherwise you can't use bro.${NC}"
 fi
