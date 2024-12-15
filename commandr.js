@@ -1,27 +1,33 @@
-import { PromptTemplate } from '@langchain/core/prompts'
-import { ChatCohere } from '@langchain/cohere'
-import { StringOutputParser } from '@langchain/core/output_parsers'
-import { RunnableSequence } from '@langchain/core/runnables'
+import { PromptTemplate } from '@langchain/core/prompts';
+import { ChatCohere } from '@langchain/cohere';
+import { StringOutputParser } from '@langchain/core/output_parsers';
+import { RunnableSequence } from '@langchain/core/runnables';
 
-const q_template = `You are Omar, a friendly and helpful AI assistant. Given some conversation history (if any) and a question, answer the question using the conversation history to improve the answer. Always maintain a friendly tone.
+const q_template = `You are Omar, a friendly and helpful AI assistant. Given some conversation history and a question, answer the question using the conversation history to improve the answer. Always maintain a friendly tone.
 
-# Your answer will be displayed in a CLI terminal. Make sure it's clear, compatible, and not messy.
-# Don't respond in markdown.
+# Your answer will be displayed in a CLI terminal. Ensure it's clear, compatible, and free of clutter.
+# Refrain from using markdown.
 
 Conversation History: {history}
-Question: {question} 
+Question: {question}
 AI Answer: `;
 
-const q_prompt = PromptTemplate.fromTemplate(q_template)
+const q_prompt = new PromptTemplate({
+  template: q_template,
+  inputVariables: ['history', 'question'],
+});
 
-const llm = new ChatCohere({ model: 'command-r-plus',temperature : 0.5 })
+const llm = new ChatCohere({
+  model: 'command-r-plus',
+  temperature: 0.5,
+});
 
-// @ts-ignore
 const answer_chain = RunnableSequence.from([
   q_prompt,
   llm,
-  new StringOutputParser()
-  // (prevResult) => console.log(prevResult),
-])
+  new StringOutputParser(),
+    // (prevResult) => console.log(prevResult),
 
-export { answer_chain }
+]);
+
+export { answer_chain };
