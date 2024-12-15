@@ -68,9 +68,11 @@ if [ $# -eq 1 ]; then
     if grep -q "export COHERE_API_KEY" "$dotFile"; then
         # Update the existing value
         sed -i "s/export COHERE_API_KEY=.*/export COHERE_API_KEY=\"$1\"/" "$dotFile"
+        source "$dotFile"
     else
         # Add the new value
         echo "export COHERE_API_KEY=\"$1\"" >> "$dotFile"
+        source $dotFile
     fi
 else
     echo -e "${YELLOW}You didn't provide a COHERE_API_KEY. Make sure you set it manually in the $dotFile file, otherwise you can't use bro.${NC}"
