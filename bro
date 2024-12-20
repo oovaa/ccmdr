@@ -45,16 +45,13 @@ async function run() {
         end();
       } else {
         try {
-          // Append the new message to the history string
-          historyStr += `Human: ${msg}\n`;
-
           const response = await answer_chain.invoke({
             question: msg,
             history: historyStr, // Pass the current history string
           });
 
-          // Append the AI's response to the history string
-          historyStr += `AI: ${response}\n`;
+          // Append the new message to the history string
+          historyStr += `Human: ${msg}\nAI: ${response}\n`;
 
           console.log(response.blue.bold);
         } catch (error) {
